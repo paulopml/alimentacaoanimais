@@ -1,0 +1,105 @@
+@import url(http://fonts.googleapis.com/css?family=Indie+Flower);
+*{
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-color:#BDB76B;
+    font-family:Indie Flower , sans-serif;
+
+}
+div#interface{
+
+    background-color: #FFFFFF;
+    width: 900px;
+    margin: 0px auto 30px auto;
+}
+header h1{
+    text-align: center;
+    padding: 5px;
+
+}
+nav#menu{
+    display: block;
+}
+nav#menu ul{
+    margin-left: 350px;
+}
+nav#menu li {
+    display: inline-block;
+    background:#BDB76B;
+    border-radius: 3px;
+    padding: 1px 5px 1px 5px;
+    font-size: 19px;
+    margin: 3px;
+    left: 450px;
+}
+p{
+    text-align: justify;
+    text-indent: 50px;
+    margin: 0px 42px 0px 30px;
+}
+main#principal{
+    padding: 10px;
+}
+nav#menu li:hover{
+    color: #FFFFFF;
+}
+img#OssoDireita{
+    padding-right: 7px;
+}
+img#OssoEsquerda{
+    padding-left: 7px;
+}
+
+
+div#calculo{
+    margin-top: 30px;
+    margin-left: 50px;
+    display: inline-block;
+}
+.radioespaco{
+    margin-right: 10px;
+}
+.inputEspaco{
+    margin-right: 3px;
+}
+.espaceDiv{
+    margin-bottom: 13px;
+}
+div#porteTamanho{
+    border: 1px solid #606060;
+    margin-top: 20px;
+}
+
+div#porteTamanho select{
+    width: 135px;
+}
+select{
+    font-family: Indie Flower , sans-serif;
+}
+
+figure#figuraExemplo{
+    width: 300px;
+    height: 300px;
+    display: -webkit-box;
+    float: right;
+    position: relative;
+    top: -127px;
+    right: 30px;
+}
+
+figure#figuraExemplo img{
+    box-shadow: 1px 0 5px;
+}
+
+footer#rodape p{
+    text-align: center;
+}
+footer#rodape{
+    clear: both;
+    padding: 10px;
+    height: 30px;
+    border-top: 1px solid #606060;
+}
