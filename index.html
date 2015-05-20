@@ -3,59 +3,108 @@
     <head>
         <meta charset="UTF-8">
         <title>Calcule a porção adequada de ração</title>
-      <link rel="stylesheet" href="_css/style.css"/>
-        <!--    <script type="text/javascript" src="_js/script.js"/> -->
+        <link rel="shortcut icon" href="osso.ico" />
+        <link rel="stylesheet" href="_css/style.css"/>
+        <script type="text/javascript" src="_js/script.js" charset="utf-8"></script>
+        <script src="_js/jquery-1.11.3.min.js" charset="utf-8"></script>
     </head>
     <body>
         <div id="interface">
             <header>
                 <h1><img id="OssoDireita" src="_img/osso.gif" alt=""/>Calcule a porção adequada de ração<img id="OssoEsquerda" src="_img/osso.gif" alt=""/></h1>
-
                 <nav id="menu">
                     <ul>
-                        <li><a href=""></a>Home</li>
-                        <li><a href=""></a>Inspiração</li>
-                        <li><a href=""></a>Fontes</li>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="inspiracao.html">Inspiração</a></li>
+                        <li><a href="fontes.html">Fontes</a></li>
                     </ul>
                 </nav>
             </header>
             <main id="principal">
-                <!--1 - Cão ou gatos
-
-                    2 - Filhote ou adulto
-
-                    3 - Porte:
-                    mini, pequeno, medio, grande ,muito grande
-
-                    4 - Idade: (depende da opção 2)
-
-                    5 - Peso: (depende da opção 2 e 3) -->
-                <p>Descruba qual a medida de ração industrializada a dar para o seu animal de estimação, pois dependendo
+                <p>Descruba qual a medida de ração industrializada a dar para o seu cão, pois dependendo
                 do seu porte peso e idade a quantidade varia, lembrando que os valores são proximados, e buscar uma orientação de uma médica
                 veterinária sempre o mais indicado.</p>
-                <div id="calculo">
-                    <div id="animal" class="espaceDiv">
-                        <label for="cachorro" class="radioespaco"><input type="radio" name="cachorro" class="inputEspaco" value="1">Cachorro</label>
-                        <label for="gato"><input type="radio" name="gato" class="inputEspaco" value="2">Gato</label>
+                <form id="calculo">
+                    <div id="filAdulto" class="espaceDivBottom">
+                        <label for="caoAtivo" class="radioespaco"><input id="caoAtivo" type="radio" name="atividade" class="inputEspaco" value="1">Cão ativo</label>
+                        <label for="caoSedentario"><input id="caoSedentario" type="radio" name="atividade" class="inputEspaco" value="2">Cão sedentário</label>
                     </div>
-                    <div id="filAdulto" class="espaceDiv">
-                        <label for="filhote" class="radioespaco"><input type="radio" name="filhote" class="inputEspaco" value="1">Filhote</label>
-                        <label for="aduto"><input type="radio" name="adulto" class="inputEspaco" value="2">Adulto</label>
-                    </div>
-                    <div id="porteTamanho" class="espaceDiv">
-                        <select name="porte" id="porte">
-                            <option value="0">Selecione o porte</option>
-                            <option value="1">Mini</option>
-                            <option value="2">Pequeno</option>
-                            <option value="3">Médio</option>
-                            <option value="4">Grande</option>
-                            <option value="5">Gigante</option>
+                    <div id="porteTamanho" class="espaceDivBottom">
+                        <select name="porte" id="porte" onchange="mudaCao();alteraDiv()" class="config">
+                            <option url="_img/cachorro.gif" value="0">Selecione o porte</option>
+                            <option url="_img/chiuaua.gif" value="1">Mini</option>
+                            <option url="_img/basset.gif" value="2">Pequeno</option>
+                            <option url="_img/bulldog-ingles.gif" value="3"> Médio</option>
+                            <option url="_img/pastoralemao.gif" value="4">Grande</option>
+                            <option url="_img/Dogue-Alemao.gif" value="5">Gigante</option>
                         </select>
                     </div>
-                </div>
+                    <div id="idade" style="display: none;">
+                        <select name="p1" class="config" id="p1">
+                            <option value="0">Seleccione a idade</option>
+                            <option value="1">Jovem</option>
+                            <option value="2">Adulto</option>
+                            <option value="3">Idoso</option>
+                        </select>
+                    </div>
+                    <div id="mini" style="display: none;">
+                        <p>Faixa de peso da raça 0,5 - 6</p>
+                    </div>
+                    <div id="pequeno" style="display: none;">
+                        <p>Faixa de peso da raça 6 - 15</p>
+                    </div>
+                    <div id="medio" style="display: none;">
+                        <p>Faixa de peso da raça 15 - 25</p>
+                    </div>
+                    <div id="grande" style="display:none;">
+                         <p>Faixa de peso da raça 25 - 45</p>
+                    </div>
+                    <div id="gigante" style="display:none;">
+                         <p>Faixa de peso da raça 45 - 60</p>
+                    </div>
+                    <div id="emAlimento" style="display:none;">
+                        <label for="peso">Digite o peso aproximado do seu cão</label>
+                        <input type="number" id="peso" name="peso" class="configInput" value="">
+                        <label for="em"><b>EM</b> - Energia Metabólica do Alimento (vide rótulo da ração)</label>
+                        <input type="number" id="em" name="em" class="configInput" value="">
+                    </div>
+                    <div id="calcular" class="espaceDivTop" style="display:none;">
+                       <button id="btCalcular" type="button" onclick="calculo();">Calcular</button>
+                    </div>
+                    <table id="resultado" style="display:none;">
+                        <tr>
+                            <td class="tdNegrito">Rotina</td>
+                            <td id="resultRotina" class="resultRotina"></td>
+                        </tr>
+                        <tr>
+                            <td class="tdNegrito">Porte</td>
+                            <td id="resultPorte" class="resultPorte"></td>
+                        </tr>
+                        <tr>
+                            <td class="tdNegrito">Faixa etária</td>
+                            <td id="resulIdade" class="resulIdade"></td>
+                        </tr>
+                        <tr>
+                            <td class="tdNegrito">Peso</td>
+                            <td id="resultPeso" class="resultPeso"></td>
+                        </tr>
+                        <tr>
+                            <td class="tdNegrito">EM</td>
+                            <td id="resultEM" class="resultEM"></td>
+                        </tr>
+                        <tr>
+                            <td class="tdNegrito">Quantidade por dia</td>
+                            <td id="resultQtd" class="resultQtd"></td>
+                        </tr>
+                    </table>
+                    <div id="imprimir" class="espaceDivTop" style="display:none;">
+                        <button type="button" id="btVoltar" onClick="window.location.reload(true)">Voltar</button>
+                        <button type="button" id="btImprimir" onclick="window.print();">Imprimir</button>
+                    </div>
+                </form>
                 <figure id="figuraExemplo">
                     <figcation>Exemplo de porte</figcation>
-                    <img src="_img/Cat_And_Dog_Cartoon_Image-95_300_300.gif" alt=""/>
+                    <img src="_img/cachorro.gif" alt="" id="caoExemplo"/>
                 </figure>
             </main>
             <footer id="rodape">
@@ -63,4 +112,8 @@
             </footer>
         </div>
     </body>
+    <script type="text/javascript" language='javascript'>
+        var caoExemplo = document.getElementById('caoExemplo');
+        var porte = document.getElementById('porte');
+    </script>
 </html>
